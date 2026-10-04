@@ -1,0 +1,16 @@
+{
+  "name": "Барбершоп Адам 24/7",
+  "short_name": "Адам Барбер",
+  "description": "Круглосуточный барбершоп Адама. Лучшие стрижки по самым низким ценам.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0d0e11",
+  "theme_color": "#e5a93b",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
