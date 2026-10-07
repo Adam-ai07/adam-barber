@@ -397,7 +397,8 @@
     <p>Более 5 лет опыта в стрижках любого уровня сложности. Работаю круглосуточно. Лучшее качество по самым низким ценам в городе!</p>
     <div class="hero-buttons">
       <a href="#booking" class="btn-primary">Записаться к Адаму</a>
-      <a href="#prices" class="btn-secondary">Посмотреть цены</a>
+      <a href="https://wa.me/79280047165" target="_blank" class="btn-secondary" style="background:#25D366; color:#fff; border-color:#25D366; font-weight:700;">💬 WhatsApp</a>
+      <a href="tel:+79280047165" class="btn-secondary">📞 +7 (928) 004-71-65</a>
     </div>
   </section>
 
@@ -471,20 +472,21 @@
   <section class="booking-section" id="booking">
     <div class="booking-box">
       <h3>Запись к мастеру Адаму</h3>
+      <p style="text-align:center; color:#9aa0a6; font-size:13px; margin-bottom:20px;">Заявка мгновенно отправится мастеру в WhatsApp</p>
       <form id="barberForm" onsubmit="handleBooking(event)">
         <div class="form-group">
           <label>Ваше имя</label>
-          <input type="text" required placeholder="Например: Иван">
+          <input type="text" id="clientName" required placeholder="Например: Магомед">
         </div>
 
         <div class="form-group">
-          <label>Номер телефона (или WhatsApp)</label>
-          <input type="tel" required placeholder="+7 (___) ___-__-__">
+          <label>Номер телефона</label>
+          <input type="tel" id="clientPhone" required placeholder="+7 (999) 000-00-00">
         </div>
 
         <div class="form-group">
           <label>Выберите услугу</label>
-          <select required>
+          <select id="clientService" required>
             <option value="mesh">Стрижка (Меш) — 400 ₽</option>
             <option value="mazh">Стрижка (Маж) — 300 ₽</option>
             <option value="okantovka">Окантовка (Мешан) — 200 ₽</option>
@@ -494,21 +496,27 @@
 
         <div class="form-group">
           <label>Удобное время (Работаем 24/7)</label>
-          <input type="time" required value="14:00">
+          <input type="time" id="clientTime" required value="15:00">
         </div>
 
-        <button type="submit" class="btn-primary form-submit">Записаться со скидкой</button>
+        <button type="submit" class="btn-primary form-submit" style="background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; gap:8px;">
+          <span>💬</span> Записаться через WhatsApp
+        </button>
       </form>
 
       <div id="successMsg" class="success-alert">
-        ✅ Отлично! Заявка принята. Адам свяжется с вами в течение 5 минут!
+        ✅ Открываем WhatsApp мастера Адама...
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 Барбершоп <span>Адам</span>. 5 лет работы. Режим 24/7. Все права защищены.</p>
+    <p>© 2026 Барбершоп <span>Адам</span>. 5 лет работы. Режим 24/7.</p>
+    <p style="margin-top:8px;">
+      📞 Телефон: <a href="tel:+79280047165" style="color:var(--accent); text-decoration:none; font-weight:700;">+7 (928) 004-71-65</a> | 
+      💬 WhatsApp: <a href="https://wa.me/79280047165" target="_blank" style="color:#25D366; text-decoration:none; font-weight:700;">Написать Адаму</a>
+    </p>
   </footer>
 
   <!-- INSTALL MODAL -->
@@ -547,10 +555,19 @@
   <script>
     function handleBooking(e) {
       e.preventDefault();
+      const name = document.getElementById('clientName').value;
+      const phone = document.getElementById('clientPhone').value;
+      const serviceSelect = document.getElementById('clientService');
+      const service = serviceSelect.options[serviceSelect.selectedIndex].text;
+      const time = document.getElementById('clientTime').value;
+
       document.getElementById('successMsg').style.display = 'block';
+
+      const text = `Привет, Адам! 👋%0AХочу записаться к тебе на стрижку:%0A✂️ Услуга: ${encodeURIComponent(service)}%0A👤 Имя: ${encodeURIComponent(name)}%0A📞 Телефон: ${encodeURIComponent(phone)}%0A⏰ Время: ${encodeURIComponent(time)}`;
+
       setTimeout(() => {
-        alert('Заявка успешно отправлена мастеру Адаму!');
-      }, 300);
+        window.open(`https://wa.me/79280047165?text=${text}`, '_blank');
+      }, 400);
     }
 
     function openInstallModal() {
